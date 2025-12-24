@@ -5,9 +5,9 @@ const PlayerMarker = ({ player }) => {
 
   return (
     <div
-      className="group absolute flex flex-col items-center"
+      className="group absolute flex flex-col items-center z-10 hover:z-20"
       style={{
-        top: `${player.team === 'home' ? 100 - player.coords.x * 2 : 100 - (200 - player.coords.x * 2)}%`,
+        top: `${player.team === 'home' ? 100 - player.coords.x * 2 + 5 : 100 - (200 - player.coords.x * 2) + 5}%`,
         left: `${player.coords.y}%`,
         transform: 'translate(-50%, -50%)',
       }}
@@ -17,6 +17,7 @@ const PlayerMarker = ({ player }) => {
           w-8 h-8 rounded-full flex items-center justify-center font-bold text-white
           ${player.team === 'home' ? 'bg-blue-500' : 'bg-red-500'}
           border-2 border-white shadow-lg cursor-pointer
+          group-hover:scale-110 transition-transform duration-200
         `}
       >
       </div>
