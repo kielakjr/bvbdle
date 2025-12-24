@@ -20,6 +20,7 @@ const PlayerMarker = ({ player }) => {
           group-hover:scale-110 transition-transform duration-200
         `}
       >
+        {player.shirt_number}
       </div>
 
       <div
