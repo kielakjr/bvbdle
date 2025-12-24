@@ -7,7 +7,7 @@ const Teams = ({ match }) => {
   const { lineup_home, lineup_away } = match;
 
   return (
-    <div className="flex flex-row justify-around items-center w-full">
+    <div className="flex flex-col gap-15 items-center w-full md:flex-row md:justify-around">
       <Pitch>
         <Team lineup={lineup_home} />
       </Pitch>
