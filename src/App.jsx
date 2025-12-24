@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import matches from '../data/database.json';
 import MatchInfo from './components/MatchInfo';
+import Teams from './components/Teams';
 
 
 const extractData = match => {
@@ -36,7 +37,10 @@ const App = () => {
   return (
     <div>
       {randomMatch ?
-        <MatchInfo match={randomMatch} />
+        <>
+          <MatchInfo match={randomMatch} />
+          <Teams match={randomMatch} />
+        </>
         :
         <div>Loading...</div>
       }
