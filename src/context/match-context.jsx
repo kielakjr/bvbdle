@@ -10,12 +10,15 @@ export const MatchContext = createContext({
   away_crest: null,
   score: null,
   goals: [],
+  away_goals: [],
+  home_goals: [],
   lineup_home: [],
   lineup_away: [],
   formation_home: null,
   formation_away: null,
   id: null,
-  season: null
+  season: null,
+  bvb_side: null
 });
 
 const extractData = match => {
@@ -28,12 +31,15 @@ const extractData = match => {
     away_crest: match.match_info.away_team_crest,
     score: match.match_info.score,
     goals: match.goals,
+    away_goals: match.goals.filter(goal => goal.team === "away"),
+    home_goals: match.goals.filter(goal => goal.team === "home"),
     lineup_home: match.lineups.filter(player => player.team === "home"),
     lineup_away: match.lineups.filter(player => player.team === "away"),
     formation_home: match.formations.home,
     formation_away: match.formations.away,
     id: match.id,
-    season: match.season
+    season: match.season,
+    bvb_side: match.match_info.home_team === "Dortmund" ? "home" : "away"
   };
 }
 
@@ -56,12 +62,15 @@ const MatchContextProvider = ({ children }) => {
     away_crest: null,
     score: null,
     goals: [],
+    away_goals: [],
+    home_goals: [],
     lineup_home: [],
     lineup_away: [],
     formation_home: null,
     formation_away: null,
     id: null,
-    season: null
+    season: null,
+    bvb_side: null
   };
 
   return (

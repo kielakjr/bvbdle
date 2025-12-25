@@ -1,4 +1,5 @@
 import React from 'react';
+import Marker from './Marker';
 
 const PlayerMarker = ({ player }) => {
   const hasImage = player.image && player.image.length > 0;
@@ -12,16 +13,9 @@ const PlayerMarker = ({ player }) => {
         transform: 'translate(-50%, -50%)',
       }}
     >
-      <div
-        className={`
-          w-8 h-8 rounded-full flex items-center justify-center font-bold text-white
-          ${player.team === 'home' ? 'bg-blue-500' : 'bg-red-500'}
-          border-2 border-white shadow-lg cursor-pointer
-          group-hover:scale-110 transition-transform duration-200
-        `}
-      >
+      <Marker team={player.team}>
         {player.shirt_number}
-      </div>
+      </Marker>
 
       <div
         className="
