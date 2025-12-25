@@ -19,7 +19,8 @@ export const MatchContext = createContext({
   id: null,
   season: null,
   bvb_side: null,
-  players_to_guess: []
+  players_to_guess: [],
+  guessed_players: []
 });
 
 const extractData = match => {
@@ -40,7 +41,9 @@ const extractData = match => {
     formation_away: match.formations.away,
     id: match.id,
     season: match.season,
-    bvb_side: match.match_info.home_team === "Dortmund" ? "home" : "away"
+    bvb_side: match.match_info.home_team === "Dortmund" ? "home" : "away",
+    players_to_guess: match.lineups.filter(player => player.team === (match.match_info.home_team === "Dortmund" ? "home" : "away")),
+    guessed_players: []
   };
 }
 
@@ -54,24 +57,16 @@ const MatchContextProvider = ({ children }) => {
     setRandomMatch(extractData(selectedMatch));
   }, []);
 
-  const ctxValue = randomMatch || {
-    date: null,
-    competition: null,
-    home_team: null,
-    away_team: null,
-    home_crest: null,
-    away_crest: null,
-    score: null,
-    goals: [],
-    away_goals: [],
-    home_goals: [],
-    lineup_home: [],
-    lineup_away: [],
-    formation_home: null,
-    formation_away: null,
-    id: null,
-    season: null,
-    bvb_side: null
+  const addGuessedPlayer = (player) => {
+    setRandomMatch(prevState => ({
+      ...prevState,
+      guessed_players: [...prevState.guessed_players, player]
+    }));
+  }
+
+  const ctxValue = {
+    ...randomMatch,
+    addGuessedPlayer
   };
 
   return (

@@ -4,7 +4,7 @@ import { use } from 'react';
 
 const ListedTeam = ({ lineup, team }) => {
 
-  const {bvb_side} = use(MatchContext);
+  const {bvb_side, guessed_players} = use(MatchContext);
 
   return (
     <ul className="max-h-128 w-70 overflow-y-auto border p-4 bg-white rounded-lg shadow-md">
@@ -12,7 +12,11 @@ const ListedTeam = ({ lineup, team }) => {
         <li key={player.name} className="mb-2">
           {player.shirt_number ? `${player.shirt_number} ` : ''}{player.name}
         </li>
-      )) : null}
+      )) : lineup.filter(player => guessed_players.includes(player.name)).map((player) => (
+        <li key={player.name} className="mb-2">
+          {player.shirt_number ? `${player.shirt_number} ` : ''}{player.name}
+        </li>
+      ))}
     </ul>
   )
 }

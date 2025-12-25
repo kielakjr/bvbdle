@@ -6,14 +6,18 @@ import { use } from 'react';
 
 const Team = ({ lineup, team }) => {
 
-  const {bvb_side} = use(MatchContext);
+  const {bvb_side, guessed_players} = use(MatchContext);
 
   return (
     <div>
       { team === bvb_side ? (
-      lineup.map((player) => (
-        <PlayerMarkerUnkown key={player.name} player={player} />
-      ))
+      lineup.map((player) => {
+        if (guessed_players.includes(player.name)) {
+          return <PlayerMarker key={player.name} player={player} />;
+        } else {
+          return <PlayerMarkerUnkown key={player.name} player={player} />;
+        }
+      })
       ) : (
         lineup.map((player) => (
           <PlayerMarker key={player.name} player={player} />
