@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { use } from 'react'
 import Team from './Team';
 import Pitch from './Pitch';
 import ListedTeam from './ListedTeam';
+import { MatchContext } from '../context/match-context';
 
-const Teams = ({ match }) => {
+const Teams = () => {
 
-  const { lineup_home, lineup_away } = match;
+  const { lineup_home, lineup_away } = use(MatchContext);
 
   return (
     <div className="flex flex-col gap-15 items-center w-full md:flex-row md:justify-center md:gap-10">
