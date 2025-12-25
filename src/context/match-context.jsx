@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext } from 'react';
-import matches from '../../data/database.json';
+import matches from '../data/database.json';
 
 export const MatchContext = createContext({
   date: null,

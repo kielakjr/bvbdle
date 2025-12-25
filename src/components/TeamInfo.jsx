@@ -15,7 +15,7 @@ const TeamInfo = ({ team, crest, goals, isScoreGuessed, isHome }) => {
           <h2>{team}</h2>
         </div>
         {isScoreGuessed &&
-        <ul className="text-md italic mx-4">
+        <ul className="text-md italic mx-6">
           {team !== "Dortmund" ? goals.map((goal) =>
             <li key={`${team}-goal-${goal.minute}`}>{goal.minute}' - {goal.player}</li>
           ) : goals.map((goal) =>
