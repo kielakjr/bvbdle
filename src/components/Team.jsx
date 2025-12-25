@@ -8,9 +8,6 @@ const Team = ({ lineup, team }) => {
 
   const {bvb_side} = use(MatchContext);
 
-  console.log('BVB side:', bvb_side);
-  console.log('Current team:', team);
-
   return (
     <div>
       { team === bvb_side ? (

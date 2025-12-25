@@ -18,7 +18,8 @@ export const MatchContext = createContext({
   formation_away: null,
   id: null,
   season: null,
-  bvb_side: null
+  bvb_side: null,
+  players_to_guess: []
 });
 
 const extractData = match => {
