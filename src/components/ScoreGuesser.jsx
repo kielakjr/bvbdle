@@ -18,7 +18,7 @@ const ScoreGuesser = ({ setGuess }) => {
         <span className="mx-2 -mt-2 text-6xl font-bold">:</span>
         <NumberInputGuess value={awayScore} onChange={setAwayScore} />
       </div>
-      <button onClick={handleGuess} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Guess</button>
+      <button onClick={handleGuess} className="mt-4 px-4 py-2 bg-blue-500 text-white cursor-pointer rounded">Guess</button>
     </div>
   )
 }
