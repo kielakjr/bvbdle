@@ -20,7 +20,9 @@ export const MatchContext = createContext({
   season: null,
   bvb_side: null,
   players_to_guess: [],
-  guessed_players: []
+  guessed_players: [],
+  reveal: false,
+  addGuessedPlayer: () => {}
 });
 
 const extractData = match => {
@@ -43,7 +45,7 @@ const extractData = match => {
     season: match.season,
     bvb_side: match.match_info.home_team === "Dortmund" ? "home" : "away",
     players_to_guess: match.lineups.filter(player => player.team === (match.match_info.home_team === "Dortmund" ? "home" : "away")),
-    guessed_players: []
+    guessed_players: [],
   };
 }
 
@@ -66,6 +68,7 @@ const MatchContextProvider = ({ children }) => {
 
   const ctxValue = {
     ...randomMatch,
+    reveal: false,
     addGuessedPlayer
   };
 

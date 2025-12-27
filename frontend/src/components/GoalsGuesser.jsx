@@ -20,10 +20,16 @@ const GoalsGuesser = ({ goals }) => {
   const [selectedPlayer, setSelectedPlayer] = useState("");
   const [goalScorers, setGoalScorers] = useState(mapGoalScorers(goals));
   const [isCorrect, setIsCorrect] = useState(null);
+  const MAX_GUESSES = goals.length + Math.floor(goals.length / 2) + 1;
+  const [guessCount, setGuessCount] = useState(0);
+  const allGuessed = goalScorers.every(scorer => scorer.guessed);
+  const noMoreGuesses = guessCount >= MAX_GUESSES;
+  const canGuess = !allGuessed && !noMoreGuesses;
 
   useEffect(() => {
     let found = false;
     if (selectedPlayer) {
+      setGuessCount(prevCount => prevCount + 1);
       const updatedScorers = goalScorers.map(scorer => {
         if (!scorer.guessed && scorer.player === selectedPlayer && !found) {
           found = true;
@@ -49,10 +55,20 @@ const GoalsGuesser = ({ goals }) => {
   return (
     goals.length === 0 ? null :
     <>
-    <PlayerSearch onSelect={setSelectedPlayer} className={`border-b-2 border-gray-400 focus:border-yellow-500 outline-none mb-2 ${isCorrect === false ? "animate-shake border-red-500" : ""}`} />
-    {goalScorers.map((goal) =>
+    {canGuess &&
+    <>
+    <label className="font-bold mb-4">Guesses: {guessCount} / {MAX_GUESSES}</label>
+    <PlayerSearch disabled={!canGuess} onSelect={setSelectedPlayer} className={`border-b-2 border-gray-400 focus:border-yellow-500 outline-none mb-2 ${isCorrect === false ? "animate-shake border-red-500" : ""}`} />
+    </>
+    }
+    {canGuess && goalScorers.map((goal) =>
       <li key={`goal-${goal.minute}`} className="flex flex-row items-center mb-2">
         <span className="mr-2">{goal.minute}' - <p className={`inline ${!goal.guessed ? "px-1 text-gray-400 italic border-b-2 border-gray-400" : "text-green-500"}`}>{goal.guessed ? goal.player : "Guess the player"}</p></span>
+      </li>
+    )}
+    {!canGuess && goalScorers.map((goal) =>
+      <li key={`goal-${goal.minute}`} className="flex flex-row items-center mb-2">
+        <span className="mr-2">{goal.minute}' - <p className={`inline ${!goal.guessed ? "text-red-500" : "text-green-500"}`}>{goal.player}</p></span>
       </li>
     )}
     </>
