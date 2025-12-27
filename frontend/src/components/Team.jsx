@@ -1,6 +1,6 @@
 import React from 'react'
 import PlayerMarker from './PlayerMarker';
-import PlayerMarkerUnkown from './PlayerMarkerUnkown';
+import PlayerMarkerUnknown from './PlayerMarkerUnknown';
 import { MatchContext } from '../context/match-context';
 import { use } from 'react';
 
@@ -15,7 +15,7 @@ const Team = ({ lineup, team }) => {
         if (guessed_players.includes(player.name)) {
           return <PlayerMarker key={player.name} player={player} />;
         } else {
-          return <PlayerMarkerUnkown key={player.name} player={player} />;
+          return <PlayerMarkerUnknown key={player.name} player={player} />;
         }
       })
       ) : (

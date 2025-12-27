@@ -86,7 +86,6 @@ const PlayerSearch = ({ onSelect, ...props }) => {
                   handleSelect(player);
                 }}
               >
-                {/* Używamy nowej funkcji do wyświetlenia nazwy */}
                 {getHighlightedText(player, query)}
               </li>
             ))

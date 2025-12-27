@@ -74,7 +74,7 @@ const MatchContextProvider = ({ children }) => {
       <MatchContext.Provider value={ctxValue}>
         {children}
       </MatchContext.Provider>
-    ) : null
+    ) : <div>Loading match...</div>
   );
 }
 

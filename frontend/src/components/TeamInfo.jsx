@@ -4,7 +4,7 @@ import GoalGuesser from './GoalGuesser';
 const TeamInfo = ({ team, crest, goals, isScoreGuessed, isHome }) => {
 
   return (
-    <div className={`w-1/3 justify-${isHome ? 'start' : 'end'} mx-17`}>
+    <div className={isHome ? 'w-1/3 justify-start mx-17' : 'w-1/3 justify-end mx-17'}>
       <div className={`flex ${isHome ? "flex-row" : "flex-row-reverse"} items-center`}>
         <div className="flex flex-col items-center">
           <img
@@ -20,7 +20,7 @@ const TeamInfo = ({ team, crest, goals, isScoreGuessed, isHome }) => {
             <li key={`${team}-goal-${goal.minute}`}>{goal.minute}' - {goal.player}</li>
           ) : goals.map((goal) => ( goal.type !== "own-goal" ?
             <GoalGuesser key={`${team}-goal-${goal.minute}`} goal={goal}/>
-            : <li key={`${team}-goal-${goal.minute}`}>{goal.minute}' - {goal.player}(own goal)</li>)
+            : <li key={`${team}-goal-${goal.minute}`}>{goal.minute}' - {goal.player} (own goal)</li>)
           )}
         </ul>}
       </div>

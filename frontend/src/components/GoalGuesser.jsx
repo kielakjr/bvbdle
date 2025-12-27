@@ -10,7 +10,7 @@ const GoalGuesser = ({ goal }) => {
     if (selectedPlayer) {
       setIsCorrect(selectedPlayer === goal.player);
     }
-  }, [selectedPlayer]);
+  }, [selectedPlayer, goal.player]);
 
   return (
     <li className="flex flex-row items-center mb-2">

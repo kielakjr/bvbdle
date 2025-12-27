@@ -1,7 +1,6 @@
-import { use, useEffect, useState } from 'react'
+import { use } from 'react'
 import TeamAndLineup from './TeamAndLineup'
 import { MatchContext } from '../context/match-context';
-import PlayerSearch from './PlayerSearch';
 import TeamSquadGuesser from './TeamSquadGuesser';
 
 const Teams = () => {

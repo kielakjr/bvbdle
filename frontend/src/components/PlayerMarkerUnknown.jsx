@@ -1,7 +1,6 @@
-import React from 'react'
 import Marker from './Marker'
 
-const PlayerMarkerUnkown = ({ player }) => {
+const PlayerMarkerUnknown = ({ player }) => {
 
   return (
     <div
@@ -18,4 +17,4 @@ const PlayerMarkerUnkown = ({ player }) => {
   );
 }
 
-export default PlayerMarkerUnkown
+export default PlayerMarkerUnknown
