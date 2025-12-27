@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-// Sample route for matches
-router.get('/matches', (req, res) => {
-  res.send('Matches route');
+router.use('/', (req, res) => {
+  res.send('Error route');
 });
 
 module.exports = router;
