@@ -3,7 +3,7 @@ import PlayerSearch from './PlayerSearch';
 import { MatchContext } from '../context/match-context';
 import { use, useState } from 'react';
 
-const MAX_GUESSES = 11;
+const MAX_GUESSES = 13;
 
 const TeamSquadGuesser = () => {
 
