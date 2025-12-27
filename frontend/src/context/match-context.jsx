@@ -21,8 +21,9 @@ export const MatchContext = createContext({
   bvb_side: null,
   players_to_guess: [],
   guessed_players: [],
-  reveal: false,
-  addGuessedPlayer: () => {}
+  revealed: null,
+  addGuessedPlayer: () => {},
+  reveal: () => {}
 });
 
 const extractData = match => {
@@ -51,6 +52,7 @@ const extractData = match => {
 
 const MatchContextProvider = ({ children }) => {
   const [randomMatch, setRandomMatch] = useState(null);
+  const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * matches.length);
@@ -68,8 +70,9 @@ const MatchContextProvider = ({ children }) => {
 
   const ctxValue = {
     ...randomMatch,
-    reveal: false,
-    addGuessedPlayer
+    revealed: revealed,
+    addGuessedPlayer,
+    reveal: () => setRevealed(true)
   };
 
   return (

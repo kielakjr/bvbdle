@@ -1,5 +1,6 @@
 import PlayerSearch from './PlayerSearch'
 import { useState, useEffect, use } from 'react';
+import { MatchContext } from '../context/match-context';
 
 const mapGoalScorers = (goals) => {
   const scorers = [];
@@ -25,6 +26,7 @@ const GoalsGuesser = ({ goals }) => {
   const allGuessed = goalScorers.every(scorer => scorer.guessed);
   const noMoreGuesses = guessCount >= MAX_GUESSES;
   const canGuess = !allGuessed && !noMoreGuesses;
+  const {revealed} = use(MatchContext);
 
   useEffect(() => {
     let found = false;
@@ -66,7 +68,12 @@ const GoalsGuesser = ({ goals }) => {
         <span className="mr-2">{goal.minute}' - <p className={`inline ${!goal.guessed ? "px-1 text-gray-400 italic border-b-2 border-gray-400" : "text-green-500"}`}>{goal.guessed ? goal.player : "Guess the player"}</p></span>
       </li>
     )}
-    {!canGuess && goalScorers.map((goal) =>
+    {!canGuess && !revealed && goalScorers.map((goal) =>
+      <li key={`goal-${goal.minute}`} className="flex flex-row items-center mb-2 self-end">
+        <span className="mr-2">{goal.minute}' - <p className={`inline ${!goal.guessed ? "px-1 text-gray-400 italic border-b-2 border-gray-400" : "text-green-500"}`}>{goal.guessed ? goal.player : "Some player"}</p></span>
+      </li>
+    )}
+    {revealed && goalScorers.map((goal) =>
       <li key={`goal-${goal.minute}`} className="flex flex-row items-center mb-2">
         <span className="mr-2">{goal.minute}' - <p className={`inline ${!goal.guessed ? "text-red-500" : "text-green-500"}`}>{goal.player}</p></span>
       </li>
