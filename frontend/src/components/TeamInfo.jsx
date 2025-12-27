@@ -1,5 +1,5 @@
 import React from 'react'
-import GoalGuesser from './GoalGuesser';
+import GoalsGuesser from './GoalsGuesser';
 
 const TeamInfo = ({ team, crest, goals, isScoreGuessed, isHome }) => {
 
@@ -18,10 +18,7 @@ const TeamInfo = ({ team, crest, goals, isScoreGuessed, isHome }) => {
         <ul className="text-md italic mx-6">
           {team !== "Dortmund" ? goals.map((goal) =>
             <li key={`${team}-goal-${goal.minute}`}>{goal.minute}' - {goal.player}</li>
-          ) : goals.map((goal) => ( goal.type !== "own-goal" ?
-            <GoalGuesser key={`${team}-goal-${goal.minute}`} goal={goal}/>
-            : <li key={`${team}-goal-${goal.minute}`}>{goal.minute}' - {goal.player} (own goal)</li>)
-          )}
+          ) : <GoalsGuesser goals={goals} />}
         </ul>}
       </div>
     </div>
