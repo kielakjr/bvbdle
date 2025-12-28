@@ -10,7 +10,6 @@ const ResultModal = () => {
   useEffect(() => {
     if (isResultsShown) {
       dialog.current.open();
-      console.log(results);
     } else {
       dialog.current.close();
     }
@@ -18,14 +17,25 @@ const ResultModal = () => {
 
   return (
     <Modal ref={dialog}>
-      <ul>
-        {results.length > 0 && results.map((result) => (
-          <li key={result.type} className="mb-4">
-            <h3 className="text-xl font-bold mb-2 capitalize">{result.type} Result</h3>
-            <p>Correct: {result.correct} / {result.total}</p>
-          </li>
-        ))}
-      </ul>
+      <div className="w-96 p-6 bg-white rounded-lg shadow-lg">
+        <ul className="flex flex-row justify-between">
+          {results.length > 0 && results.map((result) => {
+              if (result.total === 0) return null;
+              return (
+                <li key={result.type} className="mb-4 text-center">
+                  <h3 className="text-xl font-bold mb-2 capitalize">{result.type}</h3>
+                  <p>{result.correct} / {result.total}</p>
+                </li>
+              );
+          })}
+        </ul>
+        <button
+          onClick={() => dialog.current.close()}
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          Close
+        </button>
+      </div>
     </Modal>
   )
 }

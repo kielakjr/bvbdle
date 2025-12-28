@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-body {
-  background-color: #222831;
+html, body, #root {
+  @apply bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 overscroll-none h-full w-full;
 }
 
 @theme {

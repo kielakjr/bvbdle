@@ -2,7 +2,7 @@ import React from 'react'
 
 const Pitch = ({ children }) => {
   return (
-    <div className="relative w-120 h-160  bg-green-600 border-4 border-white rounded-lg shadow-lg">
+    <div className="relative w-120 h-160 border-4 border-white rounded-lg shadow-lg bg-gradient-to-tl from-emerald-500 to-lime-600">
       <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-white transform -translate-y-1/2"></div>
       <div className="absolute top-1/2 left-1/2 w-12 h-12 border-4 border-white rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute top-0 left-1/3 w-0.5 h-20 bg-white"></div>

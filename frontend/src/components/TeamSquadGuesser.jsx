@@ -7,7 +7,7 @@ const MAX_GUESSES = 2;
 
 const TeamSquadGuesser = () => {
 
-  const {guessed_players, players_to_guess , addGuessedPlayer, revealed, reveal, addResults, toggleResults } = use(MatchContext);
+  const {guessed_players, players_to_guess , addGuessedPlayer, revealed, reveal, addResults, toggleResults, results } = use(MatchContext);
   const [guesses, setGuesses] = useState(0);
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const allCorrect = correctGuesses === players_to_guess.length;
@@ -24,6 +24,7 @@ const TeamSquadGuesser = () => {
   }
 
   const revealAllPlayers = () => {
+    if (results.find(result => result.type === 'goals') === undefined) return;
     players_to_guess.forEach(player => {
       if (!guessed_players.includes(player.name)) {
         addGuessedPlayer(player.name);
@@ -53,7 +54,7 @@ const TeamSquadGuesser = () => {
         ))}
       </ul>
       {guesses >= MAX_GUESSES && !allCorrect && !revealed && (
-        <div className="mt-2 p-2 bg-gray-800 rounded">
+        <div className="mt-2 p-2 rounded">
           <p className="text-yellow-400">Maximum number of guesses reached!</p>
           <button onClick={revealAllPlayers} className="mt-2 px-4 py-2 bg-yellow-500 text-black rounded cursor-pointer">Reveal All</button>
         </div>
