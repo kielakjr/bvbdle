@@ -1,15 +1,16 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import PlayerSearch from './PlayerSearch';
 import { MatchContext } from '../context/match-context';
 import { use, useState } from 'react';
 
-const MAX_GUESSES = 2;
+const MAX_GUESSES = 13;
 
 const TeamSquadGuesser = () => {
 
   const {guessed_players, players_to_guess , addGuessedPlayer, revealed, reveal, addResults, toggleResults, results } = use(MatchContext);
   const [guesses, setGuesses] = useState(0);
   const [correctGuesses, setCorrectGuesses] = useState(0);
+  const [goalsResultAdded, setGoalsResultAdded] = useState(true);
   const allCorrect = correctGuesses === players_to_guess.length;
 
   const handlePlayerSelect = (player) => {
@@ -24,7 +25,10 @@ const TeamSquadGuesser = () => {
   }
 
   const revealAllPlayers = () => {
-    if (results.find(result => result.type === 'goals') === undefined) return;
+    if (results.find(result => result.type === 'goals') === undefined) {
+      setGoalsResultAdded(false);
+      return;
+    };
     players_to_guess.forEach(player => {
       if (!guessed_players.includes(player.name)) {
         addGuessedPlayer(player.name);
@@ -56,6 +60,7 @@ const TeamSquadGuesser = () => {
       {guesses >= MAX_GUESSES && !allCorrect && !revealed && (
         <div className="mt-2 p-2 rounded">
           <p className="text-yellow-400">Maximum number of guesses reached!</p>
+          {!goalsResultAdded && (<p className="text-yellow-400">Reveal after guessing goal scorers.</p>)}
           <button onClick={revealAllPlayers} className="mt-2 px-4 py-2 bg-yellow-500 text-black rounded cursor-pointer">Reveal All</button>
         </div>
       )}

@@ -16,9 +16,9 @@ const TeamInfo = ({ team, crest, goals, isScoreGuessed, isHome }) => {
         </div>
         {isScoreGuessed &&
         <ul className="text-md italic mx-6 flex flex-col justify-center items-center">
-          {team !== "Dortmund" ? goals.map((goal) =>
-            <li key={`${team}-goal-${goal.minute}`}>{goal.minute}' - {goal.player}</li>
-          ) : <GoalsGuesser goals={goals} />}
+          {team !== "Dortmund" ? goals.map((goal) => (
+            <li key={`${team}-goal-${goal.minute}`}>{goal.minute}' - {goal.player} {goal.type === "own_goal" ? "(own goal)" : ""}</li>
+          )) : <GoalsGuesser goals={goals} />}
         </ul>}
       </div>
     </div>

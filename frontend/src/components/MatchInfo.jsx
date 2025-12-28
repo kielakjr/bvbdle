@@ -13,7 +13,7 @@ const MatchInfo = () => {
   const isScoreGuessed = guess.home !== '' && guess.away !== '';
 
   return (
-      <div className="flex flex-col p-4 text-gray-800 m-7 rounded-lg shadow-lg bg-gradient-to-r from-rose-100 to-teal-100">
+      <div className="flex flex-col p-4 text-gray-800 m-7 rounded-lg shadow-lg bg-gradient-to-t from-yellow-200 via-yellow-200 to-yellow-400">
         <div className="mb-4 text-center">
           <h1 className="text-2xl font-bold">{competition}</h1>
           <p className="text-sm text-gray-600">{date}</p>

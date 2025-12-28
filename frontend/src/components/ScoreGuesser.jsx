@@ -12,6 +12,7 @@ const ScoreGuesser = ({ setGuess }) => {
   const [awayScore, setAwayScore] = useState('');
 
   const handleGuess = () => {
+    if (homeScore === '' || awayScore === '') return;
     setGuess({ home: homeScore, away: awayScore });
     const homePoint = homeScore == score.split(':')[0] ? 1 : 0;
     const awayPoint = awayScore == score.split(':')[1] ? 1 : 0;
@@ -29,7 +30,7 @@ const ScoreGuesser = ({ setGuess }) => {
         <span className="mx-2 -mt-2 text-6xl font-bold">:</span>
         <NumberInputGuess value={awayScore} onChange={setAwayScore} />
       </div>
-      <button onClick={handleGuess} className="mt-4 px-4 py-2 text-white cursor-pointer rounded bg-gradient-to-r from-blue-400 to-emerald-400">Guess</button>
+      <button onClick={handleGuess} className="mt-4 px-4 py-2 text-white cursor-pointer rounded bg-gradient-to-t from-gray-700 via-gray-900 to-black">Guess</button>
     </div>
   )
 }
