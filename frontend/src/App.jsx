@@ -1,15 +1,15 @@
-import React from 'react'
 import MatchContextProvider from './context/match-context'
-import MatchInfo from './components/MatchInfo'
-import Teams from './components/Teams'
 import WelcomeModal from './components/WelcomeModal'
 import Game from './components/Game'
+import { useState } from 'react';
 
 const App = () => {
 
+  const [isWelcomeShown, setIsWelcomeShown] = useState(true);
+
   return (
     <>
-    <WelcomeModal />
+    {isWelcomeShown && <WelcomeModal onClose={() => setIsWelcomeShown(false)} />}
     <MatchContextProvider>
       <Game />
     </MatchContextProvider>

@@ -1,25 +1,12 @@
-import { useRef, useImperativeHandle } from 'react'
-import { createPortal} from 'react-dom';
+import React from 'react'
 
-const Modal = ({ ref, children }) => {
-  const dialog = useRef();
-
-  let classes = "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 backdrop:bg-black/50 outline-none rounded-lg"
-
-  useImperativeHandle(ref, () => ({
-    open: () => {
-      dialog.current.showModal();
-    },
-    close: () => {
-      dialog.current.close();
-    }
-  }));
-
-  return createPortal(
-    <dialog ref={dialog} className={classes}>
-      {children}
-    </dialog>,
-    document.getElementById('modal')
+const Modal = ({ children, ...props}) => {
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-black/60 z-50">
+      <div {...props}>
+        {children}
+      </div>
+    </div>
   )
 }
 

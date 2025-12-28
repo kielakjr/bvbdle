@@ -1,20 +1,14 @@
-import { useRef, useEffect } from 'react'
+import React from 'react'
 import Modal from './Modal';
 
-const WelcomeModal = () => {
-  const dialog = useRef();
-
-  useEffect(() => {
-    dialog.current.open();
-  }, []);
+const WelcomeModal = ({ onClose }) => {
 
   return (
-    <Modal ref={dialog}>
-      <div className="w-96 h-48 bg-gray-800 text-white rounded-md p-8 text-center">
-        <h2 className="text-2xl font-bold mb-4">Welcome to BVBDLE!</h2>
-        <p className="mb-4">Guess the Borussia Dortmund squad for the upcoming match. You have 13 guesses to identify the players. Good luck!</p>
-        <button onClick={() => dialog.current.close()} className="px-4 py-2 bg-yellow-500 text-black rounded cursor-pointer">Start Guessing</button>
-      </div>
+    <Modal className="bg-linear-15 from-yellow-300 via-yellow-400 to-black rounded-lg p-8 max-w-md mx-4 z-100 flex flex-col">
+      <h2 className="text-2xl font-bold mb-4">Welcome to Bvbdle!</h2>
+      <p className="mb-4">Guess the final score, scorers and lineup for Borussia Dortmund's matches.</p>
+      <p className="mb-4">Do you remember all the players?</p>
+      <button className="mt-4 px-4 py-2 bg-black text-yellow-500 rounded cursor-pointer self-end" onClick={onClose}>Start Guessing!</button>
     </Modal>
   )
 }
