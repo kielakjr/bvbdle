@@ -49,7 +49,7 @@ const TeamSquadGuesser = () => {
   }, [guessed_players]);
 
   return (
-    <div className="w-1/5 flex flex-col justify-center text-center items-center self-start">
+    <div className="w-1/6 flex flex-col justify-center text-center items-center md:self-start">
       <label className="text-white mb-2 block">Guesses: {guesses} / {MAX_GUESSES}</label>
       <PlayerSearch disabled={guesses >= MAX_GUESSES || allCorrect} className="border-b-2 text-white border-gray-400 focus:border-yellow-500 outline-none" onSelect={handlePlayerSelect}/>
       <ul className="mt-2 text-white italic">

@@ -5,7 +5,7 @@ const TeamInfo = ({ team, crest, goals, isScoreGuessed, isHome }) => {
 
   return (
     <div className={isHome ? 'w-1/3 justify-start mx-17' : 'w-1/3 justify-end mx-17'}>
-      <div className={`flex ${isHome ? "flex-row" : "flex-row-reverse"} items-center`}>
+      <div className={`flex flex-col ${isHome ? "lg:flex-row" : "lg:flex-row-reverse"} items-center`}>
         <div className="flex flex-col items-center">
           <img
             className="mb-2 h-24 w-24 object-contain mix-blend-multiply"

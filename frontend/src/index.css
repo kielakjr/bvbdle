@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 html, body, #root {
-  @apply bg-gradient-to-t from-gray-700 via-gray-900 to-black overscroll-none;
+  @apply bg-gradient-to-t from-gray-700 via-gray-900 to-black overscroll-none w-full min-h-full m-0 p-0 lg:h-full;
 }
 
 @theme {

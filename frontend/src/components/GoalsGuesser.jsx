@@ -79,7 +79,7 @@ const GoalsGuesser = ({ goals }) => {
       </li>
     )}
     {!canGuess && !revealed && goalScorers.map((goal) =>
-      <li key={`goal-${goal.minute}`} className="flex flex-row items-center mb-2 self-end">
+      <li key={`goal-${goal.minute}`} className="flex flex-row items-center mb-2">
         <span className="mr-2">{goal.minute}' - <p className={`inline ${goal.type === "own_goal" ? "text-black" : !goal.guessed ? "px-1 text-gray-400 italic border-b-2 border-gray-400" : "text-green-500"}`}>{goal.type === "own_goal" ? `${goal.player} (own goal)` : goal.guessed ? goal.player : "Some player"}</p></span>
       </li>
     )}

@@ -18,7 +18,7 @@ const MatchInfo = () => {
           <h1 className="text-2xl font-bold">{competition}</h1>
           <p className="text-sm text-gray-600">{date}</p>
         </div>
-        <div className="flex flex-row w-full justify-between items-center">
+        <div className="flex flex-col md:flex-row w-full justify-between items-center gap-5 md:gap-0">
           <TeamInfo isHome={true} team={home_team} crest={home_crest} goals={home_goals} isScoreGuessed={isScoreGuessed} />
           <div className="flex flex-col justify-center items-center">
             {isScoreGuessed ? (
