@@ -26,7 +26,7 @@ const GoalsGuesser = ({ goals }) => {
   const allGuessed = goalScorers.every(scorer => scorer.guessed);
   const noMoreGuesses = guessCount >= MAX_GUESSES;
   const canGuess = !allGuessed && !noMoreGuesses;
-  const {revealed} = use(MatchContext);
+  const {revealed, addResults} = use(MatchContext);
 
   useEffect(() => {
     let found = false;
@@ -52,6 +52,16 @@ const GoalsGuesser = ({ goals }) => {
       }, 500);
     }
   }, [selectedPlayer]);
+
+  useEffect(() => {
+    if (!canGuess) {
+      addResults({
+        correct: goalScorers.filter(scorer => scorer.guessed).length,
+        total: goalScorers.length,
+        type: 'goals'
+      });
+    }
+  }, [canGuess]);
 
 
   return (

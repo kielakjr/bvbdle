@@ -1,14 +1,25 @@
 import React from 'react'
 import NumberInputGuess from './NumberInputGuess'
 import { useState } from 'react';
+import { use } from 'react';
+import { MatchContext } from '../context/match-context';
 
 const ScoreGuesser = ({ setGuess }) => {
+
+  const { score, addResults } = use(MatchContext);
 
   const [homeScore, setHomeScore] = useState('');
   const [awayScore, setAwayScore] = useState('');
 
   const handleGuess = () => {
     setGuess({ home: homeScore, away: awayScore });
+    const homePoint = homeScore == score.split(':')[0] ? 1 : 0;
+    const awayPoint = awayScore == score.split(':')[1] ? 1 : 0;
+    addResults({
+      correct: homePoint + awayPoint,
+      total: 2,
+      type: 'score'
+    });
   };
 
   return (

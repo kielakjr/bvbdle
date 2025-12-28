@@ -22,8 +22,12 @@ export const MatchContext = createContext({
   players_to_guess: [],
   guessed_players: [],
   revealed: null,
+  results: [],
+  isResultsShown: false,
   addGuessedPlayer: () => {},
-  reveal: () => {}
+  reveal: () => {},
+  addResults: () => {},
+  toggleResults: () => {}
 });
 
 const extractData = match => {
@@ -53,6 +57,8 @@ const extractData = match => {
 const MatchContextProvider = ({ children }) => {
   const [randomMatch, setRandomMatch] = useState(null);
   const [revealed, setRevealed] = useState(false);
+  const [results, setResults] = useState([]);
+  const [isResultsShown, setIsResultsShown] = useState(false);
 
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * matches.length);
@@ -68,11 +74,19 @@ const MatchContextProvider = ({ children }) => {
     }));
   }
 
+  const addResults = (result) => {
+    setResults(prevResults => ([...prevResults, result]));
+  }
+
   const ctxValue = {
     ...randomMatch,
-    revealed: revealed,
+    revealed,
+    results,
+    isResultsShown,
     addGuessedPlayer,
-    reveal: () => setRevealed(true)
+    reveal: () => setRevealed(true),
+    addResults,
+    toggleResults: () => setIsResultsShown(prev => !prev),
   };
 
   return (

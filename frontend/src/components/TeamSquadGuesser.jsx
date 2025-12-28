@@ -3,11 +3,11 @@ import PlayerSearch from './PlayerSearch';
 import { MatchContext } from '../context/match-context';
 import { use, useState } from 'react';
 
-const MAX_GUESSES = 13;
+const MAX_GUESSES = 2;
 
 const TeamSquadGuesser = () => {
 
-  const {guessed_players, players_to_guess , addGuessedPlayer, revealed, reveal } = use(MatchContext);
+  const {guessed_players, players_to_guess , addGuessedPlayer, revealed, reveal, addResults, toggleResults } = use(MatchContext);
   const [guesses, setGuesses] = useState(0);
   const [correctGuesses, setCorrectGuesses] = useState(0);
   const allCorrect = correctGuesses === players_to_guess.length;
@@ -29,6 +29,12 @@ const TeamSquadGuesser = () => {
         addGuessedPlayer(player.name);
       }
     });
+    addResults({
+        correct: correctGuesses,
+        total: players_to_guess.length,
+        type: 'lineup'
+      });
+    toggleResults();
     reveal();
   }
 
