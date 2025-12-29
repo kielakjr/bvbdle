@@ -1,5 +1,4 @@
 import React from 'react';
-import players from '../data/players.json';
 import { useState, useEffect } from 'react';
 
 
@@ -49,6 +48,7 @@ const getHighlightedText = (text, highlight) => {
 const PlayerSearch = ({ onSelect, ...props }) => {
   const [query, setQuery] = useState('');
   const [filteredPlayers, setFilteredPlayers] = useState([]);
+  const [players, setPlayers] = useState([]);
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -58,7 +58,7 @@ const PlayerSearch = ({ onSelect, ...props }) => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        setFilteredPlayers(data);
+        setPlayers(data);
       } catch (error) {
         console.error('Error fetching players:', error);
       }

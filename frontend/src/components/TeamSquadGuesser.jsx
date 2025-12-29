@@ -48,6 +48,19 @@ const TeamSquadGuesser = () => {
     setCorrectGuesses(correctCount);
   }, [guessed_players]);
 
+  useEffect(() => {
+    if (allCorrect && !revealed) {
+      addResults({
+        correct: correctGuesses,
+        total: players_to_guess.length,
+        type: 'lineup'
+      });
+      reveal();
+      toggleResults();
+    }
+
+  }, [correctGuesses]);
+
   return (
     <div className="w-1/6 flex flex-col justify-center text-center items-center md:self-start">
       <label className="text-white mb-2 block">Guesses: {guesses} / {MAX_GUESSES}</label>
