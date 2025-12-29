@@ -48,7 +48,24 @@ const getHighlightedText = (text, highlight) => {
 
 const PlayerSearch = ({ onSelect, ...props }) => {
   const [query, setQuery] = useState('');
-  const [filteredPlayers, setFilteredPlayers] = useState(players);
+  const [filteredPlayers, setFilteredPlayers] = useState([]);
+
+  useEffect(() => {
+    const fetchPlayers = async () => {
+      try {
+        const response = await fetch('/api/players');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setFilteredPlayers(data);
+      } catch (error) {
+        console.error('Error fetching players:', error);
+      }
+    };
+
+    fetchPlayers();
+  }, []);
 
   useEffect(() => {
     setFilteredPlayers(
