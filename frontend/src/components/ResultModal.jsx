@@ -8,7 +8,7 @@ const ResultModal = () => {
   const { results, toggleResults } = use(MatchContext);
 
   return (
-    <Modal className="bg-linear-15 from-yellow-300 via-yellow-400 to-black rounded-lg p-8 max-w-md mx-4 flex flex-col border-4">
+    <Modal className="bg-linear-15 from-yellow-300 via-yellow-400 to-black rounded-lg p-8 max-w-md mx-4 flex flex-col border-4 animate-fade-in-down">
       <h1 className="text-3xl font-bold mb-4 text-center text-yellow-500 italic">Your Results</h1>
       <ul className="flex flex-row">
         {results.map((result) => {
