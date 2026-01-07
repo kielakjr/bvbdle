@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import playersData from '../data/players.json';
 
 
 const normalizeString = (str) => {
@@ -51,20 +52,22 @@ const PlayerSearch = ({ onSelect, ...props }) => {
   const [players, setPlayers] = useState([]);
 
   useEffect(() => {
-    const fetchPlayers = async () => {
-      try {
-        const response = await fetch('/api/players');
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setPlayers(data);
-      } catch (error) {
-        console.error('Error fetching players:', error);
-      }
-    };
+    // const fetchPlayers = async () => {
+    //   try {
+    //     const response = await fetch('/api/players');
+    //     if (!response.ok) {
+    //       throw new Error(`HTTP error! status: ${response.status}`);
+    //     }
+    //     const data = await response.json();
+    //     setPlayers(data);
+    //   } catch (error) {
+    //     console.error('Error fetching players:', error);
+    //   }
+    // };
 
-    fetchPlayers();
+    // fetchPlayers();
+
+    setPlayers(playersData);
   }, []);
 
   useEffect(() => {
@@ -93,7 +96,7 @@ const PlayerSearch = ({ onSelect, ...props }) => {
         {...props}
       />
       {query && (
-        <ul className="absolute w-full z-50 border border-gray-300 max-h-40 overflow-y-auto mt-1 bg-white">
+        <ul className="absolute w-full z-50 border border-gray-300 max-h-40 min-h-20 overflow-y-auto mt-1 bg-white">
           {filteredPlayers.length > 0 ? (
             filteredPlayers.map((player) => (
               <li

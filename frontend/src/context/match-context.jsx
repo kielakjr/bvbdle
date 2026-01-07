@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext } from 'react';
-// import matches from '../data/database.json';
+import matches from '../data/database.json';
 
 export const MatchContext = createContext({
   date: null,
@@ -62,23 +62,29 @@ const MatchContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchMatches = async () => {
-      try {
-        const response = await fetch("/api/matches/random");
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const match = await response.json();
-        const matchData = extractData(match);
-        setRandomMatch(matchData);
-      } catch (error) {
-        console.error("Error fetching matches:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    // const fetchMatches = async () => {
+    //   try {
+    //     const response = await fetch("/api/matches/random");
+    //     if (!response.ok) {
+    //       throw new Error(`HTTP error! status: ${response.status}`);
+    //     }
+    //     const match = await response.json();
+    //     const matchData = extractData(match);
+    //     setRandomMatch(matchData);
+    //   } catch (error) {
+    //     console.error("Error fetching matches:", error);
+    //   } finally {
+    //     setIsLoading(false);
+    //   }
+    // };
 
-    fetchMatches();
+    // fetchMatches();
+
+    // Using local data for now
+    const randomIndex = Math.floor(Math.random() * matches.length);
+    const matchData = extractData(matches[randomIndex]);
+    setRandomMatch(matchData);
+    setIsLoading(false);
   }, []);
 
   const addGuessedPlayer = (player) => {

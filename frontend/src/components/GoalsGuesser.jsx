@@ -12,7 +12,7 @@ const mapGoalScorers = (goals) => {
       minute: goal.minute
     });
   });
-  return scorers;
+  return scorers.sort((a, b) => a.minute - b.minute);
 }
 
 
