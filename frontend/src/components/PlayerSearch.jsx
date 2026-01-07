@@ -96,7 +96,7 @@ const PlayerSearch = ({ onSelect, ...props }) => {
         {...props}
       />
       {query && (
-        <ul className="absolute w-full z-50 border border-gray-300 max-h-40 min-h-20 overflow-y-auto mt-1 bg-white">
+        <ul className="absolute w-full z-50 border border-gray-300 max-h-40 overflow-y-auto mt-1 bg-white">
           {filteredPlayers.length > 0 ? (
             filteredPlayers.map((player) => (
               <li
